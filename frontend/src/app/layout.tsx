@@ -39,3 +39,24 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
+
+/*
+ * PROTEUS APPLICATION LAYOUT
+ *
+ * This root layout defines the shared structure used across the application.
+ *
+ * - Metadata: Sets the browser title and description for the Proteus console.
+ * - Fonts: Loads Geist Sans and Geist Mono for consistent typography.
+ * - Sidebar: Provides the main navigation for desktop screens.
+ * - TopBar: Displays the top-level application header.
+ * - MobileNav: Provides navigation optimized for mobile devices.
+ * - Main Content: Renders the current page through the children prop.
+ * - Styling: Uses Tailwind CSS utility classes for spacing, layout,
+ *   background colors, text colors, and responsive behavior.
+ * - HTML Configuration: Sets the document language to English and
+ *   applies the loaded font variables across the application.
+ *
+ * Keeping these shared elements in one root layout ensures a consistent
+ * interface across pages while allowing individual pages to render their
+ * own content inside the main section.
+ */
