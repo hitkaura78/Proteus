@@ -1,76 +1,107 @@
+```css
 @import "tailwindcss";
 
+/* Root-level design tokens used throughout the application */
 :root {
   /* Surfaces — graphite/charcoal scale */
   --surface-0: #0a0b0d;   /* app background */
   --surface-1: #101216;   /* panel background */
   --surface-2: #15181d;   /* raised panel / card */
   --surface-3: #1c2027;   /* hover / active surface */
+
+  /* Border shades for separating UI elements */
   --border-subtle: #23272f;
   --border-default: #2c313b;
   --border-strong: #3a4049;
 
-  /* Typography */
+  /* Typography colors for different text priorities */
   --text-primary: #e7e9ec;
   --text-secondary: #9aa1ac;
   --text-tertiary: #656d78;
   --text-disabled: #454b55;
 
-  /* Semantic state colors */
+  /* Semantic colors used to communicate application states */
   --state-good: #3ecf8e;      /* healthy / admitted / stable */
   --state-good-dim: #1c4a37;
+
+  /* Warning colors indicate potential issues or drift */
   --state-warn: #e0a63e;      /* warning / approaching drift */
   --state-warn-dim: #4a3a1c;
+
+  /* Error colors represent attacks, anomalies, or rejected data */
   --state-bad: #e2555a;       /* attack / anomaly / rejected */
   --state-bad-dim: #4a2224;
+
+  /* Network-related activity uses a blue accent */
   --state-network: #4fb3d9;   /* network / system activity */
   --state-network-dim: #1c3a45;
+
+  /* Purple shades distinguish generated or synthetic data */
   --state-synthetic: #9d7de8; /* GAN / synthetic-generation */
   --state-synthetic-dim: #332a4a;
+
+  /* Neutral state for inactive or idle components */
   --state-idle: #5a6270;
 
+  /* Shared accent and keyboard-focus colors */
   --accent: #4fb3d9;
   --focus-ring: #4fb3d9;
 
+  /* Monospaced font stack for metrics and technical values */
   --font-mono-metric: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 }
 
+/* Expose design tokens as Tailwind theme utilities */
 @theme inline {
+  /* Background and panel surface utilities */
   --color-surface-0: var(--surface-0);
   --color-surface-1: var(--surface-1);
   --color-surface-2: var(--surface-2);
   --color-surface-3: var(--surface-3);
+
+  /* Border utilities */
   --color-border-subtle: var(--border-subtle);
   --color-border-default: var(--border-default);
   --color-border-strong: var(--border-strong);
+
+  /* Text color utilities */
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
   --color-text-disabled: var(--text-disabled);
+
+  /* Semantic status utilities */
   --color-good: var(--state-good);
   --color-good-dim: var(--state-good-dim);
   --color-warn: var(--state-warn);
   --color-warn-dim: var(--state-warn-dim);
   --color-bad: var(--state-bad);
   --color-bad-dim: var(--state-bad-dim);
+
+  /* Network and synthetic-data utilities */
   --color-network: var(--state-network);
   --color-network-dim: var(--state-network-dim);
   --color-synthetic: var(--state-synthetic);
   --color-synthetic-dim: var(--state-synthetic-dim);
   --color-idle: var(--state-idle);
   --color-accent: var(--accent);
+
+  /* Application font utilities */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Apply a consistent border color across UI components */
 * {
   border-color: var(--border-default);
 }
 
+/* Keep browser controls compatible with the dark interface */
 html {
   color-scheme: dark;
 }
 
+/* Define the default page appearance and typography */
 body {
   background: var(--surface-0);
   color: var(--text-primary);
@@ -79,34 +110,66 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Customize highlighted text to match the network accent palette */
 ::selection {
   background: var(--state-network-dim);
   color: var(--text-primary);
 }
 
-/* thin technical scrollbars */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+/* Thin technical scrollbars for dashboard navigation */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
+/* Keep the scrollbar track visually unobtrusive */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Use a stronger border shade for the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+
+/* Increase contrast when the scrollbar is hovered */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Monospaced text for aligned numeric values */
 .mono {
   font-family: var(--font-mono-metric);
   font-variant-numeric: tabular-nums;
 }
 
+/* Animation for indicators that need to appear active */
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.35;
+  }
 }
+
+/* Apply the pulsing animation to live-status indicators */
 .live-dot {
   animation: pulse-dot 1.8s ease-in-out infinite;
 }
 
+/* Define the movement of animated flow-line dashes */
 @keyframes flow-dash {
-  to { stroke-dashoffset: -20; }
+  to {
+    stroke-dashoffset: -20;
+  }
 }
+
+/* Animate active connections in the architecture visualization */
 .flow-edge-active {
   stroke-dasharray: 4 4;
   animation: flow-dash 0.6s linear infinite;
 }
+```
