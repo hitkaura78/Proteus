@@ -1,6 +1,6 @@
 # Proteus: Drift-Aware, GAN-Augmented Intrusion Detection for Software-Defined Networks
 
-**Proteus** is an adaptive, closed-loop network intrusion detection architecture designed to mitigate concept drift in Software-Defined Networks (SDN). By monitoring classifier prediction confidence shifts via a two-sample Kolmogorov-Smirnov (KS) test, Proteus triggers targeted generative augmentation using a conditional Wasserstein GAN with Gradient Penalty (WGAN-GP), filters synthetic samples through a Maximum Mean Discrepancy (MMD) fidelity gate, and performs bounded-memory adaptive retraining (`BoundedBufferClassifier`) to maintain high detection rates without memory growth or retraining latency bottlenecks.
+**Proteus** is an adaptive, closed-loop intrusion detection system developed to address concept drift in Software-Defined Networks (SDN). It detects shifts in classifier prediction confidence using a two-sample Kolmogorov-Smirnov (KS) test, triggering targeted data augmentation through a conditional Wasserstein GAN with Gradient Penalty (WGAN-GP). Generated samples are evaluated using a Maximum Mean Discrepancy (MMD) fidelity gate before being used for adaptive retraining with `BoundedBufferClassifier`, enabling bounded memory usage and helping reduce retraining overhead while maintaining detection performance.
 
 ---
 
